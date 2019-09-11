@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--ie渲染引擎-->
+  <!--忽略电话号码和email识别-->
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="email=no" />
+  <!--当网站添加到主屏幕快速启动方式，将网站添加到主屏幕快速启动方式-->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!--隐藏ios上的浏览器地址栏-->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <!-- UC默认竖屏 ，UC强制全屏 -->
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <!-- QQ强制竖屏 QQ强制全屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+  <script src="./js/numInput.js"></script>
+  <!-- <script src="./js/numInput.min.js"></script> -->
+  <style>
+    input {
+      display: block;
+      font-size: 30px;
+      border: 1px solid #000000;
+      margin: 30px;
+    }
+
+    .testBox {
+      display: flex;
+      width: 100%;
+    }
+
+    .testBox input {
+      width: 100%;
+    }
+  </style>
+  <title>数字键盘</title>
+</head>
+
+<body>
+  <div class="abc">占地方</div>
+  <div>不含X输入</div>
+  <div class="testBox">
+    <div>88983948093840</div>
+    <input type="number" onfocus="this.blur();" class="numInput" maxlength="20" readonly="readonly">
+  </div>
+  <div>含x输入</div>
+  <input onfocus="this.blur();" class="numInput" maxlength="10">
+  <input onfocus="this.blur();" class="numInput" maxlength="40">
+  <input onfocus="this.blur();" class="numInput" maxlength="8">
+  <input onfocus="this.blur();" class="numInput" maxlength="9">
+  <input onfocus="this.blur();" class="numInput" maxlength="10">
+  <input onfocus="this.blur();" class="numInput testBlur" maxlength="10">
+</body>
+<script>
+  /*
+    maxlength 不设置最多可输入6个;
+    input类名必须为numInput;
+    input添加获取焦点事件 onfocus="this.blur();
+    type为number为纯数字输入，否则为含x输入;
+    obj.inputFocus = function(e){} 输入框失去焦点事件;
+    obj.inputBlur = function(e){} 输入框获得焦点事件;
+    获取焦点方法：obj.toBlur(dom) //dom必传
+    失去焦点方法：obj.toFocus(dom) //dom非必传，不传情况下仅隐藏光标和键盘。
+  */
+  var obj = new NumInput();
+  obj.init();
+
+  console.log(navigator.userAgent)
+
+  obj.inputFocus = function(e){
+    console.log('失去焦点',e)
+  }
+  obj.inputBlur = function(e){
+    console.log('获得焦点',e)
+  }
+  // obj.toBlur(document.getElementsByClassName('testBlur')[0]);
+  // setTimeout(() => {
+  //   obj.toFocus(document.getElementsByClassName('testBlur')[0]);
+  // }, 3000);
+</script>
+
+</html>
